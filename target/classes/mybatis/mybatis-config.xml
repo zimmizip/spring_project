@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Main" type="model.MainDTO" />
+		<typeAlias alias="Board" type="model.BoardDTO" />
+		<typeAlias alias="Comment" type="model.CommentDTO" />
+		<typeAlias type="model.CommuteDTO" alias="Commute" />
+		<typeAlias type="model.NoticeDTO" alias = "Notice" />
+		<typeAlias type="model.DocumentDTO" alias = "Document" />
+		<typeAlias type="model.WorkUsersDTO" alias = "WorkUsers"/>
+		<typeAlias type="model.Workspace_makeDTO" alias = "Workspace_make"/>
+		<typeAlias type = "model.ChatDTO" alias = "Chat" />
+		<typeAlias type="model.TodoDTO" alias = "Todo"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521:xe" />
+				<property name="username" value="work" />
+				<property name="password" value="1111" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource ="mybatis/memberdelete.xml" />
+        <mapper resource ="mybatis/membermodify.xml" />
+		<mapper resource="mybatis/comm.xml" />
+		<mapper resource="mybatis/doc.xml" />
+		<mapper resource="mybatis/work.xml" />
+		<mapper resource="mybatis/attend.xml" />
+		<mapper resource="mybatis/main.xml" />
+		<mapper resource="mybatis/login.xml" />
+		<mapper resource="mybatis/passwordCk.xml" />
+		<mapper resource="mybatis/regist.xml" />
+		<mapper resource="mybatis/Board.xml" />
+		<mapper resource="mybatis/noti.xml" />
+		<mapper resource="mybatis/workUsers.xml"/>
+		<mapper resource="mybatis/chat.xml" />
+		<mapper resource="mybatis/todo.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="doc">
+         
+    <insert id="insertDoc" parameterType="hashMap">
+         insert into 
+         document_approval(num, workspace_name, email,day,title,content,approval) 
+         values(docu_num.nextval, #{workspace_name}, #{email},
+                 (SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') FROM DUAL),
+               #{title},#{content},'대기')
+   </insert>
+   
+   <select id="docuAllList" resultType="Document">
+		select * from document_approval where approval = '대기' and workspace_name = #{workspace}
+	</select>
+	
+	<select id="docu_finishList" resultType="Document">
+		select * from document_approval where approval = '승인' and workspace_name = #{workspace}
+	</select>
+	
+	<select id = "docu_contentList" resultType = "Document">
+		select * from document_approval where num = #{num} and workspace_name = #{workspace}
+	</select>
+	
+	<update id="docuPermit" parameterType="hashmap"  >
+	     update document_approval set approval = '승인' 
+				where num = #{num} and workspace_name = #{workspace}
+   </update>
+   
+   <update id="docuCancel" parameterType="hashmap"  >
+	     update document_approval set approval = '대기' 
+				where num = #{num} and workspace_name = #{workspace}
+   </update>
+</mapper>

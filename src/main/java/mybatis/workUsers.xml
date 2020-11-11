@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="workUsers">
+	<select id="workUserAllList" parameterType = "hashmap" resultType="WorkUsers">
+		select * from workspace_users where workspace_name = #{workspace}
+	</select>
+	
+	<select id = "userProfile" parameterType = "hashmap" resultType = "WorkUsers">
+		select * from workspace_users where email = #{email} and workspace_name = #{workspace}
+	</select>
+	
+	<select id = "deleteUser" parameterType = "hashmap">
+		delete from workspace_users where email = #{email} and workspace_name = #{workspace}
+	</select>
+</mapper>

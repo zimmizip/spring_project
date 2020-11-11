@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="comm">
+   
+   <select id="selectCOM" parameterType="hashmap" resultType="int">
+   		select count(*) 
+   		from commute 
+   		where email=#{email} and workspace_name = #{workspace_name}
+   		and day=(SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM DUAL)
+   </select>
+   
+   <insert id="insertGTW" parameterType="hashmap">
+   		insert into 
+   		commute(workspace_name,email,day,gtw) 
+   		values(#{workspace_name},#{email},
+   			   (SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM DUAL),
+   			   (SELECT TO_CHAR(SYSDATE, 'HH24:MI:SS') FROM DUAL))
+   </insert>
+   
+   <update id="updateOW" parameterType="hashmap">
+   		update commute 
+   		set ow = (SELECT TO_CHAR(SYSDATE, 'HH24:MI:SS') FROM DUAL) 
+   		where email = #{email} and workspace_name = #{workspace_name}
+   		and day=(SELECT TO_CHAR(SYSDATE, 'YY/MM/DD') FROM DUAL)
+   </update>
+   
+	<select id="commAllList" resultType="Commute">
+		select u.name, c.email, c.day, c.gtw, c.ow
+		from workspace_users u, commute c
+		where u.email = c.email
+		and u.workspace_name = #{workspace}
+	</select>
+   
+   
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="attend">
+           
+   <select id="CheckCode" parameterType="String" resultType="String">
+   		select workspace_name from workspace_maker where code = #{code}
+   </select>   
+      
+   <insert id="insertUsers" parameterType="hashMap">
+   		insert into 
+   		workspace_users(workspace_name,email,name,userDate,grade) 
+   		values(#{workspace_name},#{email},#{name},
+  				(SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD') FROM DUAL), 				
+   			   '일반 멤버')
+   </insert>
+    
+</mapper>

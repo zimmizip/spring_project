@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="todo">
+
+	<select id="selectTodo" parameterType="String" resultType="Todo">
+		select * from todo where email = #{email}
+	</select>
+
+	<select id="sel_num" parameterType="String" resultType="int">
+		select max(num) from todo where email = #{email} order by num desc 
+	</select>
+
+	<insert id="todo_make" parameterType="hashMap">
+   		insert into todo(num,email,content)
+   		values(#{num},#{email},#{content})
+   </insert>
+   
+   <delete id = "todo_del" parameterType = "int">
+		delete from todo where num = #{num}
+   </delete>
+</mapper>

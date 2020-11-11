@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="work">
+     
+   <select id="CheckName" parameterType="String" resultType="int">
+   		select count(*) from workspace_maker where workspace_name = #{workspace_name}
+   </select>   
+      
+   <select id="CheckCode" parameterType="String" resultType="int">
+   		select count(*) from workspace_maker where code = #{code}
+   </select>   
+      
+   <insert id="insertWork" parameterType="hashMap">
+   		insert into 
+   		workspace_maker(workspace_name,email,code) 
+   		values(#{workspace_name},#{email},#{code})
+   </insert>
+    
+    <insert id="insertUsers" parameterType="hashMap">
+   		insert into 
+   		workspace_users(workspace_name,email,name,userDate,grade) 
+   		values(#{workspace_name},#{email},#{name},
+  				(SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD') FROM DUAL), 				
+   			   '관리자 멤버')
+   </insert>
+   
+   <select id = "deleteWorkspace" parameterType = "String" resultType = "hashMap">
+   	select w.email email, u.password password
+		from workspace_users w, users u
+		where w.email = u.email
+		and w.grade = '관리자 멤버'
+		and workspace_name = #{workspace_name}
+   </select>
+   
+   <select id = "deleteWorkspacePro" parameterType = "hashMap">
+   	delete from workspace_maker where workspace_name = #{workspace_name} and email = #{email}
+   </select>
+   
+</mapper>
