@@ -9,8 +9,14 @@ Technologies
 - Java, JavaScript, Ajax
 - Spring Framework
 - Oracle
-- WebSocket
-- WebRTC   
+- WebSocket(채팅 구현하는데 사용)
+- WebRTC(1:1 화상 회의를 구현하는데 사용)   
+
+Start
+=====
+실행에 앞서 webRTC를 사용하기 위해 nodejs와 OPENSSL이 필요합니다.
+nodejs와 OPENSSL을 설치한 후 cmd에서 step-05
+src/main/webapp/view에 있는 index.jsp를 실행합니다.
 
 Project Structure
 ======   
