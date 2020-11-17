@@ -23,3 +23,7 @@ Project Structure
 DB Modeling
 =====
 ![erd](https://user-images.githubusercontent.com/71058576/99394749-b9eee480-2922-11eb-852b-98522219cdee.PNG)
+
+Demo
+=====
+[![Video Label](https://user-images.githubusercontent.com/71058576/99397290-33d49d00-2926-11eb-84f6-193152fe0a33.PNG)](https://www.youtube.com/watch?v=4rdbWvvzha0)
